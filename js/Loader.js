@@ -25,11 +25,6 @@ export class Loader {
         this.oLoaderProgress = this.oDocument.createElement("div");
         this.oLoaderProgress.classList.add("loaderProgress");
         this.oLoaderBar.appendChild(this.oLoaderProgress);
-
-        this.oLoaderSrcCode = this.oDocument.createElement("textarea");
-        this.oLoaderSrcCode.classList.add("loaderText");
-        this.oLoaderSrcCode.classList.add("loaderSourceCode");
-        this.oLoaderDiv.appendChild(this.oLoaderSrcCode);
     }
 
     setText(sText) {

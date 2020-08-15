@@ -1,11 +1,12 @@
 var cubeRotation = 0.0;
-
+var mat4;
 
 //
 // Start here
 //
-export function main() {
-    const canvas = document.querySelector('#glcanvas');
+export function main(mat4ref) {
+    mat4 = mat4ref;
+    const canvas = document.querySelector('#glCanvas');
     const gl = canvas.getContext('webgl');
 
     // If we don't have a GL context, give up now
@@ -69,7 +70,7 @@ export function main() {
     // objects we'll be drawing.
     const buffers = initBuffers(gl);
 
-    const texture = loadTexture(gl, 'cubetexture.png');
+    const texture = loadTexture(gl, 'textures/ja.png');
 
     var then = 0;
 

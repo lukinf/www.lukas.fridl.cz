@@ -2,12 +2,12 @@ class Core {
 
     static init() {
         this.setClasses();
-
         console.log(new Date());
 
         // Document object model loaded
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log('DOM fully loaded and parsed');
+            this.calculateAspectRatio();
 
             // 1.) import loader
             import("/js/Loader.js").then((obj) => {
@@ -24,17 +24,17 @@ class Core {
     static async loadClasses() {
         let that = this;
         for (let i = 0; i < that.aClasses.length; i++) {
-            console.info("Loading data from file " + that.aClasses[i].path);
+            console.info("Loading: " + that.aClasses[i].path);
             that.oLoader.setProgress(Math.round(((i + 1) / (that.aClasses.length)) * 100));
-            that.oLoader.setText("Loading data from file " + that.aClasses[i].path);
+            that.oLoader.setText("Loading: " + that.aClasses[i].path);
             if (that.aClasses[i].class === "glMatrix") {
-
+                that.aClasses[i].ref = await import(that.aClasses[i].path);
             } else {
                 var oObject = await import(that.aClasses[i].path).catch(err => { console.error(err) })
                 if (that.aClasses[i].class !== "Index") {
                     that.aClasses[i].ref = new oObject[that.aClasses[i].class](document);
                 } else {
-                    oObject.main();
+                    that.renderGlMatrix(oObject);
                 }
             }
             await that.wait(100);
@@ -43,9 +43,28 @@ class Core {
         this.oLoader.hide();
     }
 
+    static renderGlMatrix(oObject) {
+        let mat4 = this.aClasses.forEach(oClass => {
+            if (oClass.moduleName === "mat4") {
+                oObject.main(oClass.ref);
+            }
+        })
+    }
+
+    static calculateAspectRatio() {
+        if (document.body.clientWidth < 640) {
+            let aspectRatio = (640 / 480);
+            let newHeight = (document.body.clientWidth / aspectRatio)
+            let newWidth = (newHeight * aspectRatio)
+            let oGlCanvas = document.querySelector("#glCanvas");
+            oGlCanvas.width = newWidth;
+            oGlCanvas.height = newHeight;
+        }
+    }
+
     static async showWelcomeMsg() {
-        this.oLoader.setText("Hello internet :-)");
-        await this.wait(100);
+        this.oLoader.setText("<b>Hello internet :-)</b>");
+        await this.wait(2000);
     }
 
     static async wait(ms) {
@@ -85,58 +104,68 @@ class Core {
         this.aClasses.push(oJs);
 
         var oJs = new Object();
-        oJs.class = "Index";
-        oJs.path = "/js/Index.js";
-        this.aClasses.push(oJs);
-
-        var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "common"
         oJs.path = "/js/glMatrix/common.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "mat2"
         oJs.path = "/js/glMatrix/mat2.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "mat2d"
         oJs.path = "/js/glMatrix/mat2d.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "mat3"
         oJs.path = "/js/glMatrix/mat3.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "mat4"
         oJs.path = "/js/glMatrix/mat4.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "quat"
         oJs.path = "/js/glMatrix/quat.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "quat2"
         oJs.path = "/js/glMatrix/quat2.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "vec2"
         oJs.path = "/js/glMatrix/vec2.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "vec3"
         oJs.path = "/js/glMatrix/vec3.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
+        oJs.moduleName = "vec4"
         oJs.path = "/js/glMatrix/vec4.js";
+        this.aClasses.push(oJs);
+
+        var oJs = new Object();
+        oJs.class = "Index";
+        oJs.path = "/js/Index.js";
         this.aClasses.push(oJs);
     }
 }
