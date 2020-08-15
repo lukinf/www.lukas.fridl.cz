@@ -1,5 +1,15 @@
 var cubeRotation = 0.0;
 var mat4;
+var stopped = false;
+
+export function stop() {
+    if (stopped === false) {
+        stopped = true;
+    } else {
+        stopped = false;
+    }
+
+}
 
 //
 // Start here
@@ -76,12 +86,17 @@ export function main(mat4ref) {
 
     // Draw the scene repeatedly
     function render(now) {
+        let deltaTime = null;
+        // if (stopped == true) {
+        //     deltaTime = now - then;
+        // } else {
         now *= 0.001;  // convert to seconds
-        const deltaTime = now - then;
+        deltaTime = now - then;
+        // }
         then = now;
-
-        drawScene(gl, programInfo, buffers, texture, deltaTime);
-
+        if (stopped === false) {
+            drawScene(gl, programInfo, buffers, texture, deltaTime);
+        }
         requestAnimationFrame(render);
     }
     requestAnimationFrame(render);

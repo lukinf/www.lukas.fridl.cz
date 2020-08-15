@@ -35,6 +35,7 @@ class Core {
                     that.aClasses[i].ref = new oObject[that.aClasses[i].class](document);
                 } else {
                     that.renderGlMatrix(oObject);
+                    that.aClasses[i].ref = oObject;
                 }
             }
             await that.wait(100);
@@ -44,11 +45,20 @@ class Core {
     }
 
     static renderGlMatrix(oObject) {
+        let that = this;
         let mat4 = this.aClasses.forEach(oClass => {
             if (oClass.moduleName === "mat4") {
                 oObject.main(oClass.ref);
             }
         })
+        let oGlCanvas = document.querySelector("#glCanvas");
+        oGlCanvas.onclick = function () {
+            that.aClasses.forEach(oObject => {
+                if (oObject.class === "Index") {
+                    oObject.ref.stop();
+                }
+            })
+        }
     }
 
     static calculateAspectRatio() {
@@ -61,6 +71,8 @@ class Core {
             oGlCanvas.height = newHeight;
         }
     }
+
+
 
     static async showWelcomeMsg() {
         this.oLoader.setText("<b>Hello internet :-)</b>");
