@@ -75,7 +75,7 @@ class Core {
 
 
     static async showWelcomeMsg() {
-        this.oLoader.setText("<b>Hello internet :-)</b>");
+        this.oLoader.setText("<h2>Hello internet :-)</h2>");
         await this.wait(2000);
     }
 

@@ -8,18 +8,12 @@ export function stop() {
     } else {
         stopped = false;
     }
-
 }
 
-//
-// Start here
-//
 export function main(mat4ref) {
     mat4 = mat4ref;
     const canvas = document.querySelector('#glCanvas');
     const gl = canvas.getContext('webgl');
-
-    // If we don't have a GL context, give up now
 
     if (!gl) {
         alert('Unable to initialize WebGL. Your browser or machine may not support it.');
@@ -27,7 +21,6 @@ export function main(mat4ref) {
     }
 
     // Vertex shader program
-
     const vsSource = `
     attribute vec4 aVertexPosition;
     attribute vec2 aTextureCoord;
@@ -44,7 +37,6 @@ export function main(mat4ref) {
   `;
 
     // Fragment shader program
-
     const fsSource = `
     varying highp vec2 vTextureCoord;
 
@@ -295,7 +287,7 @@ function isPowerOf2(value) {
 // Draw the scene.
 //
 function drawScene(gl, programInfo, buffers, texture, deltaTime) {
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
+    //gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
     gl.clearDepth(1.0);                 // Clear everything
     gl.enable(gl.DEPTH_TEST);           // Enable depth testing
     gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
