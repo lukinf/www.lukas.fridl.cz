@@ -20,39 +20,6 @@
     margin-right: 10px;
     margin-left: 10px;
   }
-
-  .linkedinImg {
-    content: url("../icons/linkedin.ico");
-  }
-
-  .linkedinImg:hover {
-    content: url("../icons/linkedin-hover.ico");
-  }
-
-  .youtubeImg {
-    content: url("../icons/youtube.ico");
-  }
-
-  .youtubeImg:hover {
-    content: url("../icons/youtube-hover.ico");
-  }
-
-  .githubImg {
-    content: url("../icons/github.ico");
-  }
-
-  .githubImg:hover {
-    content: url("../icons/github-hover.ico");
-  }
-
-  .instagramImg {
-    content: url("../icons/instagram.ico");
-  }
-
-  .instagramImg:hover {
-    content: url("../icons/instagram-hover.ico");
-  }
-
   
   .loader {
     display: none;
