@@ -10,18 +10,15 @@ export class Loader {
         this.oLoaderDiv = this.oDocument.createElement("div");
         this.oLoaderDiv.classList.add("loader");
         this.oDocument.body.appendChild(this.oLoaderDiv);
-
         // Loader text
         this.oLoaderTextDiv = this.oDocument.createElement("div");
         this.oLoaderTextDiv.classList.add("loaderText");
         this.oLoaderDiv.appendChild(this.oLoaderTextDiv);
-
         // Progress bar 
         this.oLoaderBar = this.oDocument.createElement("div");
         this.oLoaderBar.classList.add("loaderText");
         this.oLoaderBar.classList.add("loaderBar");
         this.oLoaderDiv.appendChild(this.oLoaderBar);
-
         this.oLoaderProgress = this.oDocument.createElement("div");
         this.oLoaderProgress.classList.add("loaderProgress");
         this.oLoaderBar.appendChild(this.oLoaderProgress);

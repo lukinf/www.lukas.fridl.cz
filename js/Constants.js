@@ -1,8 +1,3 @@
-const desktop = "desktop";
-const mobile = "mobile";
-const tablet = "tablet";
-
-
-//var oJs = new Object();
-//oJs.path = "/js/vents.js";
-//aClasses.push(oJs);
+const desktop = "DESKTOP";
+const mobile = "MOBILE";
+const tablet = "TABLET";

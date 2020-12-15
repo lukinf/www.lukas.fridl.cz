@@ -3,18 +3,14 @@ class Core {
     static init() {
         this.setClasses();
         console.log(new Date());
-
-        // Document object model loaded
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log('DOM fully loaded and parsed');
             this.calculateAspectRatio();
-
             // 1.) import loader
             import("/js/Loader.js").then((obj) => {
                 this.oLoader = new obj.Loader(document);
                 this.oLoader.show();
                 this.oLoader.setText("Preparing...");
-
                 // 2.) Load JS classes
                 this.loadClasses();
             }).catch(err => { console.error(err) })
@@ -71,8 +67,6 @@ class Core {
             oGlCanvas.height = newHeight;
         }
     }
-
-
 
     static async showWelcomeMsg() {
         this.oLoader.setText("<h2>Hello internet :-)</h2>");
@@ -177,7 +171,7 @@ class Core {
 
         var oJs = new Object();
         oJs.class = "Index";
-        oJs.path = "/js/Index.js";
+        oJs.path = "/js/Cube.js";
         this.aClasses.push(oJs);
     }
 }
