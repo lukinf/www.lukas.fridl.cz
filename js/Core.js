@@ -4,14 +4,11 @@ class Core {
         this.setClasses();
         console.log(new Date());
         document.addEventListener('DOMContentLoaded', (event) => {
-            console.log('DOM fully loaded and parsed');
             this.calculateAspectRatio();
-            // 1.) import loader
             import("/js/Loader.js").then((obj) => {
                 this.oLoader = new obj.Loader(document);
                 this.oLoader.show();
                 this.oLoader.setText("Preparing...");
-                // 2.) Load JS classes
                 this.loadClasses();
             }).catch(err => { console.error(err) })
         });
@@ -85,8 +82,6 @@ class Core {
         this.aClasses.forEach(oClass => {
             if (oClass.class === "Index") {
                 oIndex = oClass.ref;
-                // oIndex.createCanvas();
-
             }
         })
     }
