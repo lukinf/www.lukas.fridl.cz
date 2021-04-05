@@ -1,2 +1,2 @@
 # My personal web page
-I'm using OpenGL 3D graphic library [GLMatrix](https://glmatrix.net) library
+I'm using OpenGL 3D graphic [GLMatrix](https://glmatrix.net) library
