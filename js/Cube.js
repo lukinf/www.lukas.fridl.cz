@@ -1,12 +1,31 @@
 var cubeRotation = 0.0;
 var mat4;
 var stopped = false;
+var iZoom = -6.0;
+var iNow = 0.01;
+
 export function stop() {
     if (stopped === false) {
         stopped = true;
     } else {
         stopped = false;
     }
+}
+export function zoomIn() {
+    if (iZoom !== -6.0){
+        iZoom = iZoom + 1.0;
+    }
+}
+export function zoomOut() {
+    if (iZoom !== -99.0){
+        iZoom = iZoom - 1.0;
+    }
+}
+export function rotationMinus(){
+    iNow = iNow - 0.01;
+}
+export function rotationPlus(){
+    iNow = iNow + 0.01;
 }
 export function main(mat4ref) {
     mat4 = mat4ref;
@@ -48,13 +67,8 @@ export function main(mat4ref) {
     var then = 0;
     function render(now) {
         let deltaTime = null;
-        // if (stopped == true) {
-        //     deltaTime = now - then;
-        // } else {
-        now *= 0.001;  // convert to seconds
-        deltaTime = now - then;
-        // }
-        then = now;
+        deltaTime += iNow;
+        now += iNow;
         if (stopped === false) {
             drawScene(gl, programInfo, buffers, texture, deltaTime);
         }
@@ -194,17 +208,9 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
         zNear,
         zFar);
     const modelViewMatrix = mat4.create();
-    mat4.translate(modelViewMatrix,
-        modelViewMatrix,
-        [-0.0, 0.0, -6.0]);
-    mat4.rotate(modelViewMatrix,
-        modelViewMatrix,
-        cubeRotation,
-        [0, 0, 1]);
-    mat4.rotate(modelViewMatrix,
-        modelViewMatrix,
-        cubeRotation * .7,
-        [0, 1, 0]);
+    mat4.translate(modelViewMatrix, modelViewMatrix,[-0.0, 0.0, iZoom]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, cubeRotation, [0, 0, 10]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, cubeRotation * 0.7, [0, 1, 0]);
     {
         const numComponents = 3;
         const type = gl.FLOAT;

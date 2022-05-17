@@ -44,16 +44,38 @@ class Core {
                 oObject.main(oClass.ref);
             }
         })
-        let oGlCanvas = document.querySelector("#glCanvas");
-        oGlCanvas.onclick = function () {
-            that.aClasses.forEach(oObject => {
-                if (oObject.class === "Index") {
-                    oObject.ref.stop();
-                }
-            })
+        
+        let oIndex;
+        
+        that.aClasses.forEach(oObject => {
+            if (oObject.class === "Index") {
+                oIndex = oObject; 
+            }
+        })
+        window.onkeydown = function (oEvent){
+            switch(oEvent.key) {
+                case "ArrowLeft":
+                    oIndex.ref.rotationMinus();
+                    break;
+                case "ArrowRight":
+                    oIndex.ref.rotationPlus();
+                    break;
+                case "ArrowUp":
+                    oIndex.ref.zoomOut();
+                    break;
+                case "ArrowDown":
+                    oIndex.ref.zoomIn();
+                    break;    
+            }
+        }
+        window.onkeypress = function (oEvent) {
+            switch(oEvent.code) {
+                case "Space":
+                    oIndex.ref.stop();
+                    break;
+              }              
         }
     }
-
     static calculateAspectRatio() {
         if (document.body.clientWidth < 640) {
             let aspectRatio = (640 / 480);
