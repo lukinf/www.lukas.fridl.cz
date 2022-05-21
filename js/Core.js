@@ -5,7 +5,7 @@ class Core {
         console.log(new Date());
         document.addEventListener('DOMContentLoaded', (event) => {
             this.calculateAspectRatio();
-            import("/js/Loader.js").then((obj) => {
+            import("/js/Loader_b807d6a57b6742d685ec1c350187.js").then((obj) => {
                 this.oLoader = new obj.Loader(document);
                 this.oLoader.show();
                 this.oLoader.setText("Preparing...");
@@ -19,7 +19,9 @@ class Core {
         for (let i = 0; i < that.aClasses.length; i++) {
             console.info("Loading: " + that.aClasses[i].path);
             that.oLoader.setProgress(Math.round(((i + 1) / (that.aClasses.length)) * 100));
-            that.oLoader.setText("Loading: " + that.aClasses[i].path);
+            let path = that.aClasses[i].path;
+            path = path.substring(0, path.length - 32);
+            that.oLoader.setText("Loading: " + path + ".js");
             if (that.aClasses[i].class === "glMatrix") {
                 that.aClasses[i].ref = await import(that.aClasses[i].path);
             } else {
@@ -101,12 +103,12 @@ class Core {
 
     static renderIndex() {
         if (this.getDevice()){
-            import("/js/Mobile.js").then((obj) => {
+            import("/js/Mobile_e078c0d37b0b420f99df9c2062db.js").then((obj) => {
                 this.oMobile = new obj.Mobile(document);
                 this.oMobile.render();
             }).catch(err => { console.error(err) })
         } else {
-            import("/js/Desktop.js").then((obj) => {
+            import("/js/Desktop_62bacc3617154dea88145e213738.js").then((obj) => {
                 this.oDesktop = new obj.Desktop(document);
                 this.oDesktop.render();
             }).catch(err => { console.error(err) })
@@ -125,67 +127,66 @@ class Core {
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "common"
-        oJs.path = "/js/glMatrix/common.js";
+        oJs.path = "/js/glMatrix/common_57f3d0254d7a48a2a54f83093a19.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "mat2"
-        oJs.path = "/js/glMatrix/mat2.js";
+        oJs.path = "/js/glMatrix/mat2_2d89ac6a35cc4f7587c3b7c706d4.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "mat2d"
-        oJs.path = "/js/glMatrix/mat2d.js";
+        oJs.path = "/js/glMatrix/mat2d_8c40af32a94746df88fb79569300.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "mat3"
-        oJs.path = "/js/glMatrix/mat3.js";
+        oJs.path = "/js/glMatrix/mat3_e2fd0df3f434458ea5cf9316e8ee.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "mat4"
-        oJs.path = "/js/glMatrix/mat4.js";
+        oJs.path = "/js/glMatrix/mat4_925b2483ef7d4ef2b00c79b88f44.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "quat"
-        oJs.path = "/js/glMatrix/quat.js";
+        oJs.path = "/js/glMatrix/quat_320d544b2aa6470da679d81dab53.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "quat2"
-        oJs.path = "/js/glMatrix/quat2.js";
+        oJs.path = "/js/glMatrix/quat2_35637ca17d4a422c884a0cd454dc.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "vec2"
-        oJs.path = "/js/glMatrix/vec2.js";
+        oJs.path = "/js/glMatrix/vec2_6a656ddfa90949579cada095741b.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "vec3"
-        oJs.path = "/js/glMatrix/vec3.js";
+        oJs.path = "/js/glMatrix/vec3_2897a3110d304bb488d92e9925ae.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "glMatrix";
         oJs.moduleName = "vec4"
-        oJs.path = "/js/glMatrix/vec4.js";
+        oJs.path = "/js/glMatrix/vec4_4728ebcc48544b55b3c55698e239.js";
         this.aClasses.push(oJs);
 
         var oJs = new Object();
         oJs.class = "Index";
-        oJs.path = "/js/Cube.js";
+        oJs.path = "/js/Cube_1fd09bcd1d624ecd844a55377bc9.js";
         this.aClasses.push(oJs);
     }
 }
-
